@@ -1,0 +1,50 @@
+-- Tải UI Library
+local OrionLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/shlexware/Orion/main/source"))()
+
+-- Tạo cửa sổ chính
+local Window = OrionLib:MakeWindow({Name = "Redz Hub : Blox Fruits", HidePremium = false, SaveConfig = true, ConfigFolder = "RedzHub"})
+
+-- Tab chính (Farm)
+local Tab = Window:MakeTab({
+    Name = "Farm",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+-- Mục nhỏ trong Tab
+Tab:AddSection({Name = "Farm Options"})
+
+-- Thêm nút bật/tắt Auto Farm Level
+Tab:AddToggle({
+    Name = "Auto Farm Level",
+    Default = false,
+    Callback = function(Value)
+        _G.AutoFarm = Value
+        if Value then
+            print("Auto farm bật")
+        else
+            print("Auto farm tắt")
+        end
+    end    
+})
+
+-- Thêm Dropdown chọn công cụ
+Tab:AddDropdown({
+    Name = "Farm Tool",
+    Default = "Melee",
+    Options = {"Melee", "Sword", "Gun"},
+    Callback = function(Value)
+        print("Đã chọn công cụ:", Value)
+    end    
+})
+
+-- Thêm Button
+Tab:AddButton({
+    Name = "Update Boss List",
+    Callback = function()
+        print("Cập nhật danh sách Boss")
+    end
+})
+
+-- Hiển thị UI
+OrionLib:Init()
